@@ -1,7 +1,7 @@
 package loader
 
 import (
-	"bufio"
+    "bufio"
     "net/http"
     "encoding/json"
 )
@@ -18,19 +18,19 @@ func LoadSegments() *[](map[string]string) {
     }
 
     scanner := bufio.NewScanner(resp.Body)
-	buf := make([]byte, 0, 64*1024)
-	scanner.Buffer(buf, 1024*1024)
-	var segmentsStr string
+    buf := make([]byte, 0, 64*1024)
+    scanner.Buffer(buf, 1024*1024)
+    var segmentsStr string
 
-	for scanner.Scan() {
-	    segmentsStr = segmentsStr + scanner.Text()
-	}
+    for scanner.Scan() {
+        segmentsStr = segmentsStr + scanner.Text()
+    }
 
-	if err := scanner.Err(); err != nil {
+    if err := scanner.Err(); err != nil {
         panic(err)
     }
 
-	var dat [](map[string]string)
+    var dat [](map[string]string)
     if err := json.Unmarshal([]byte(segmentsStr), &dat); err != nil {
         panic(err)
     }
