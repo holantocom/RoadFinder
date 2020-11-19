@@ -54,13 +54,10 @@ func matching(w http.ResponseWriter, req *http.Request) {
 func main() {
 
     go func() {
-        g = *loader.LoadSegments()
-        log.Println("Segments Loaded")
-    }()
-
-    go func() {
         p = *loader.LoadEndpoints()
         log.Println("Endpoints Loaded")
+        g = *loader.LoadSegments()
+        log.Println("Segments Loaded")
     }()
 
     http.HandleFunc("/matching", matching)

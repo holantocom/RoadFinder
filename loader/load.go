@@ -19,7 +19,7 @@ func LoadSegments() *map[string]map[string]int {
             segments[seg["from"].(string)] = make(map[string]int)
         }
 
-        segments[seg["from"].(string)][seg["to"].(string)] = 200
+        segments[seg["from"].(string)][seg["to"].(string)] = 1
     }
 
     return &segments
