@@ -8,33 +8,33 @@ import (
 
 func LoadSegments() *map[string]map[string]int {
 
-	var segments  = map[string]map[string]int{}
+    var segments  = map[string]map[string]int{}
 
-	parsed := *loadFromURL(SEGMENTS_URL)
-	for _, seg := range parsed.([]interface{}) {
+    parsed := *loadFromURL(SEGMENTS_URL)
+    for _, seg := range parsed.([]interface{}) {
 
-		seg := seg.(map[string]interface{})
+        seg := seg.(map[string]interface{})
 
-		if segments[seg["from"].(string)] == nil {
+        if segments[seg["from"].(string)] == nil {
             segments[seg["from"].(string)] = make(map[string]int)
         }
 
         segments[seg["from"].(string)][seg["to"].(string)] = 200
-	}
+    }
 
     return &segments
 }
 
 func LoadEndpoints() *map[string]string {
-	var pointNames = map[string]string{}
+    var pointNames = map[string]string{}
 
-	parsed := *loadFromURL(ENDPOINTS_URL)
-	for _, point := range parsed.([]interface{}){
-		point := point.(map[string]interface{})
-		pointNames[point["code"].(string)] = point["name"].(string)
-	}
+    parsed := *loadFromURL(ENDPOINTS_URL)
+    for _, point := range parsed.([]interface{}){
+        point := point.(map[string]interface{})
+        pointNames[point["code"].(string)] = point["name"].(string)
+    }
 
-	return &pointNames
+    return &pointNames
 }
 
 func loadFromURL(url string) *interface{} {
